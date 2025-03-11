@@ -25,7 +25,7 @@ namespace SqlLite
         {
             throw new NotImplementedException();
         }
-
+        
         public Task<Contato> BuscarContatoPorId(Guid id)
         {
             throw new NotImplementedException();
