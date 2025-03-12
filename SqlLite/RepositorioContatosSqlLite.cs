@@ -73,17 +73,24 @@ namespace SqlLite
 
         public Task<List<Contato>> BuscarTodosContatos()
         {
-            throw new NotImplementedException();
+            return BuscarTodosContatosAsync();
+        }
+
+        public async Task<List<Contato>> BuscarTodosContatosAsync()
+        {
+            return await _database.Table<Contato>().ToListAsync();
         }
 
         public Task ExcluirContato(Contato contato)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(ExcluirContatoAsync(contato));
         }
 
-        public Task ExcluirContatoAsync(Contato contato)
+        public async Task ExcluirContatoAsync(Contato contato)
         {
-            throw new NotImplementedException();
+            var contatoExcluir = await BuscarContatoPorIdAsync(contato.Id);
+            if (contatoExcluir != null && contato.Id.Equals(contatoExcluir.Id))
+                await _database.DeleteAsync(contatoExcluir);            
         }
     }
 }
