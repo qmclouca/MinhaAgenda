@@ -1,5 +1,4 @@
-﻿namespace SqlLite
-{
+﻿namespace MinhaAgenda.Plugins.SqlLite
     public class Constantes
     {
         public const string _databasefilename = "ContatosSqlLite.db3";

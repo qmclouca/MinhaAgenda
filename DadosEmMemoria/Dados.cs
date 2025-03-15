@@ -1,11 +1,10 @@
 ﻿using CasosDeUso.PluginsInterfaces;
 using CoreBusiness.Entidades;
 
-namespace DadosEmMemoria
+namespace MinhaAgenda.Plugins.DadosEmMemoria
 {   
     public class Dados : IRepositorioDeContatos
     {
-
         public static List<Contato> _contatos;
         
         public Dados()

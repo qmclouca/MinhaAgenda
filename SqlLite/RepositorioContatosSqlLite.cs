@@ -2,7 +2,7 @@
 using CoreBusiness.Entidades;
 using SQLite;
 
-namespace SqlLite
+namespace MinhaAgenda.Plugins.SqlLite
 {
     public class RepositorioContatosSqlLite : IRepositorioDeContatos
     {
