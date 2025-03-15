@@ -1,54 +1,96 @@
 ﻿using CasosDeUso.PluginsInterfaces;
 using CoreBusiness.Entidades;
+using SQLite;
 
-namespace SqlLite
+namespace MinhaAgenda.Plugins.SqlLite
 {
-    // All the code in this file is included in all platforms.
-    public static class RepositorioContatosSqlLite : IRepositorioDeContatos
+    public class RepositorioContatosSqlLite : IRepositorioDeContatos
     {
-        public Task AdicionarContato(Contato contato)
+        private SQLiteAsyncConnection _database;
+
+        public RepositorioContatosSqlLite()
         {
-            throw new NotImplementedException();
+            _database = new SQLiteAsyncConnection(Constantes._databasepath);
+            _database.CreateTableAsync<Contato>().Wait();
         }
 
-        public Task AdicionarContatoAsync(Contato contato)
+        public Task AdicionarContato(Contato contato)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(AdicionarContatoAsync(contato));
+        }
+
+        public async Task AdicionarContatoAsync(Contato contato)
+        {
+            await _database.InsertAsync(contato);
         }
 
         public Task AtualizarContato(Contato contato)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(AtualizarContatoAsync(contato));
         }
 
-        public Task AtualizarContatoAsync(Contato contato)
+        public async Task AtualizarContatoAsync(Contato contato)
         {
-            throw new NotImplementedException();
+           var colunasAfetadas = await _database.UpdateAsync(contato);
+            if (colunasAfetadas <= 0)
+                throw new InvalidOperationException("Erro ao atualizar contato");
         }
-
+        
         public Task<Contato> BuscarContatoPorId(Guid id)
         {
-            throw new NotImplementedException();
+           return BuscarContatoPorIdAsync(id);
         }
 
+        public async Task<Contato> BuscarContatoPorIdAsync(Guid id)
+        {
+           return await _database.Table<Contato>().Where(c => c.Id == id).FirstOrDefaultAsync();
+        }
         public Task<List<Contato>> BuscarContatos(string filtro)
         {
-            throw new NotImplementedException();
+            return BuscarContatosAsync(filtro);
+        }
+
+        public async Task<List<Contato>> BuscarContatosAsync(string filtro)
+        {
+            if (string.IsNullOrWhiteSpace(filtro))
+                return await _database.Table<Contato>().ToListAsync();
+
+            return await this._database.QueryAsync<Contato>
+                (
+                    @"
+                    SELECT * FROM Contato
+                    WHERE 
+                        Nome LIKE ? OR 
+                        Fone LIKE ? OR 
+                        Email LIKE ? OR 
+                        Endereco LIKE ?",
+                        $"{filtro}%",
+                        $"{filtro}%",
+                        $"{filtro}%",
+                        $"{filtro}%"
+                );
         }
 
         public Task<List<Contato>> BuscarTodosContatos()
         {
-            throw new NotImplementedException();
+            return BuscarTodosContatosAsync();
+        }
+
+        public async Task<List<Contato>> BuscarTodosContatosAsync()
+        {
+            return await _database.Table<Contato>().ToListAsync();
         }
 
         public Task ExcluirContato(Contato contato)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(ExcluirContatoAsync(contato));
         }
 
-        public Task ExcluirContatoAsync(Contato contato)
+        public async Task ExcluirContatoAsync(Contato contato)
         {
-            throw new NotImplementedException();
+            var contatoExcluir = await BuscarContatoPorIdAsync(contato.Id);
+            if (contatoExcluir != null && contato.Id.Equals(contatoExcluir.Id))
+                await _database.DeleteAsync(contatoExcluir);            
         }
     }
 }
