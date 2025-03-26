@@ -1,6 +1,10 @@
-﻿using CasosDeUso.PluginsInterfaces;
+﻿using CasosDeUso;
+using CasosDeUso.Interface;
+using CasosDeUso.PluginsInterfaces;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using MinhaAgenda.Plugins.SqlLite;
+using MinhaAgenda.Views;
 
 namespace MinhaAgenda
 {
@@ -9,6 +13,7 @@ namespace MinhaAgenda
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+            builder.UseMauiApp<App>().UseMauiCommunityToolkit();
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
@@ -21,10 +26,13 @@ namespace MinhaAgenda
     		builder.Logging.AddDebug();
 #endif
             #region injeção de dependências
-            builder.Services.AddSingleton<IRepositorioDeContatos, RepositorioContatosSqlLite>();
-            //builder.Services.AddSingleton<IRepositorioDeContatos, Dados>();
+            //builder.Services.AddSingleton<IRepositorioDeContatos, RepositorioContatosSqlLite>();
+            builder.Services.AddSingleton<IRepositorioDeContatos, Plugins.DadosEmMemoria.Dados>();
+            builder.Services.AddSingleton<IVisualizarContatosUseCase, VisualizarContatosUseCase>();
+            builder.Services.AddSingleton<IApagarContatoUseCase, ApagarContatosUseCase>();
+            builder.Services.AddSingleton<IAdicionarContatoUseCase, AdicionarContatoUseCase>();
             #endregion
-
+            builder.Services.AddSingleton<ContatosPage>();
             return builder.Build();
         }
     }

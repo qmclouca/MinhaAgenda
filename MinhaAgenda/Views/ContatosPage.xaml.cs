@@ -8,7 +8,9 @@ public partial class ContatosPage : ContentPage
 {
     private readonly IVisualizarContatosUseCase _visualizarContatosUseCase;
     private readonly IApagarContatoUseCase _apagarContatoUseCase;
-	public ContatosPage(IVisualizarContatosUseCase visualizarContatosUseCase, 
+ 
+        
+    public ContatosPage(IVisualizarContatosUseCase visualizarContatosUseCase, 
             IApagarContatoUseCase apagarContatoUseCase)
 	{
 		InitializeComponent();
