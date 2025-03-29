@@ -63,12 +63,22 @@ public partial class ContatosControl : ContentView
     {
         if (nameValidator.IsNotValid)
         {
-
+            OnError?.Invoke(sender, "Um nome é obrigatório");
+            return;
         }
+        if(emailValidator.IsNotValid)
+        {
+            foreach(var error in emailValidator.Errors!)
+            {
+                OnError?.Invoke(sender, error.ToString());
+            }
+            return;
+        }
+        OnSave?.Invoke(sender, e);
     }
 
     private void btnCancel_Clicked(object sender, EventArgs e)
     {
-
+        OnCancel?.Invoke(sender, e);
     }
 }

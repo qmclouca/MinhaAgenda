@@ -26,13 +26,16 @@ namespace MinhaAgenda
     		builder.Logging.AddDebug();
 #endif
             #region injeção de dependências
-            //builder.Services.AddSingleton<IRepositorioDeContatos, RepositorioContatosSqlLite>();
-            builder.Services.AddSingleton<IRepositorioDeContatos, Plugins.DadosEmMemoria.Dados>();
+            builder.Services.AddSingleton<IRepositorioDeContatos, RepositorioContatosSqlLite>();
+            //builder.Services.AddSingleton<IRepositorioDeContatos, Plugins.DadosEmMemoria.Dados>();
             builder.Services.AddSingleton<IVisualizarContatosUseCase, VisualizarContatosUseCase>();
             builder.Services.AddSingleton<IApagarContatoUseCase, ApagarContatosUseCase>();
             builder.Services.AddSingleton<IAdicionarContatoUseCase, AdicionarContatoUseCase>();
+            builder.Services.AddSingleton<IEditarContatoUseCase, EditarContatoUseCase>();
             #endregion
             builder.Services.AddSingleton<ContatosPage>();
+            builder.Services.AddSingleton<EditarContatoPage>();
+            builder.Services.AddSingleton<AdicionarContatoPage>();
             return builder.Build();
         }
     }
