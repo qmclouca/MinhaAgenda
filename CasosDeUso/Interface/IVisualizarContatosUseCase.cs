@@ -4,6 +4,7 @@ namespace CasosDeUso.Interface
 {
     public interface IVisualizarContatosUseCase
     {
-        Task<List<Contato>> ExecutaAsync(string filtro);
+        Task<Contato> ExecutaAsync(Guid contatoId);
+        Task<List<Contato>> ExecutaListAsync(string filtro);
     }
 }

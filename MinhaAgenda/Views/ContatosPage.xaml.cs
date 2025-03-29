@@ -27,19 +27,19 @@ public partial class ContatosPage : ContentPage
 
     private async void CarregarContatos()
     {
-        var contatos = new ObservableCollection<Contato>(await _visualizarContatosUseCase.ExecutaAsync(string.Empty));
+        var contatos = new ObservableCollection<Contato>(await _visualizarContatosUseCase.ExecutaListAsync(string.Empty));
         listaContatos.ItemsSource = contatos;
     }
 
     private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
     {
-        var contatos = new ObservableCollection<Contato>(await _visualizarContatosUseCase.ExecutaAsync(((SearchBar)sender!).Text));
+        var contatos = new ObservableCollection<Contato>(await _visualizarContatosUseCase.ExecutaListAsync(((SearchBar)sender!).Text));
         listaContatos.ItemsSource = contatos;
     }
 
     private async void SearchBar_SearchButtonPressed(object sender, EventArgs e)
     {
-        var contatos = new ObservableCollection<Contato>(await _visualizarContatosUseCase.ExecutaAsync(((SearchBar)sender!).Text));
+        var contatos = new ObservableCollection<Contato>(await _visualizarContatosUseCase.ExecutaListAsync(((SearchBar)sender!).Text));
         listaContatos.ItemsSource = contatos;
     }
 
@@ -64,8 +64,8 @@ public partial class ContatosPage : ContentPage
         CarregarContatos();
     }
 
-    private void btnAdicionar_Clicked(object sender, EventArgs e)
+    private async void btnAdicionar_Clicked(object sender, EventArgs e)
     {
-        Shell.Current.GoToAsync(nameof(AdicionarContatoPage));
+        await Shell.Current.GoToAsync($"{nameof(AdicionarContatoPage)}");
     }
 }

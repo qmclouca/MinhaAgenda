@@ -19,11 +19,11 @@ public partial class AdicionarContatoPage : ContentPage
 
     private void contatoCtrl_OnCancel(object sender, EventArgs e)
     {
-
+        Shell.Current.GoToAsync($"//{nameof(ContatosPage)}");
     }
 
     private void contatoCtrl_OnError(object sender, string e)
     {
-
+        DisplayAlert("Erro", e, "Ok");
     }
 }

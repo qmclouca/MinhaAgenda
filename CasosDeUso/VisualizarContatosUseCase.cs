@@ -17,7 +17,12 @@ namespace CasosDeUso
         {
             _contatoRepository = repositorioDeContatos;
         }
-        public async Task<List<Contato>> ExecutaAsync(string filtro)
+        public async Task<Contato> ExecutaAsync(Guid contatoId)
+        {
+            return await _contatoRepository.BuscarContatoPorId(contatoId); ;
+        }
+
+        public async Task<List<Contato>> ExecutaListAsync(string filtro)
         {
             return await _contatoRepository.BuscarContatos(filtro);
         }
