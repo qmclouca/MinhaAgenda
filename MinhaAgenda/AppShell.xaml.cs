@@ -7,9 +7,11 @@ namespace MinhaAgenda
         public AppShell()
         {
             InitializeComponent();
-            //Routing.RegisterRoute(nameof(ContatosPage), typeof(ContatosPage));
+
             Routing.RegisterRoute(nameof(EditarContatoPage), typeof(EditarContatoPage));
             Routing.RegisterRoute(nameof(AdicionarContatoPage), typeof(AdicionarContatoPage));
+
+            Routing.RegisterRoute(nameof(ObservacoesPage), typeof(ObservacoesPage));
         }
     }
 }

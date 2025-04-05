@@ -1,0 +1,29 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MinhaAgenda.Views.ObservacoesPage"
+             Title="Nova Observação">
+
+    <ScrollView>
+        <StackLayout Padding="24" Spacing="20">
+
+            <Label Text="Observações sobre o contato:"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="Black" />
+
+            <Editor Text="{Binding Observacoes}"
+                    HeightRequest="200"
+                    Placeholder="Digite aqui suas observações..."
+                    AutoSize="TextChanges"
+                    BackgroundColor="#f0f0f0"
+                    TextColor="Black" />
+
+            <Button Text="Salvar"
+                    BackgroundColor="#007AFF"
+                    TextColor="White"
+                    CornerRadius="8"
+                    HeightRequest="50"
+                    FontAttributes="Bold" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
