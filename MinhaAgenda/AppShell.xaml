@@ -10,7 +10,7 @@
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate views:ContatosPage}"
-        Route="ContatosPage" />
+        ContentTemplate="{DataTemplate views:ObservacoesPage}"
+        Route="ObservacoesPage" />
 
 </Shell>
