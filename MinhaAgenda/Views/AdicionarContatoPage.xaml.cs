@@ -13,7 +13,7 @@ public partial class AdicionarContatoPage : ContentPage
 
     private async void contatoCtrl_OnSave(object sender, EventArgs e)
     {
-        await _adicionarContatoUseCase.ExecutaAsync(new CoreBusiness.Entidades.Contato(contatosCtrl.Name, contatosCtrl.Phone, contatosCtrl.Email, contatosCtrl.Address));
+        await _adicionarContatoUseCase.ExecutaAsync(new CoreBusiness.Entidades.Contato(contatosCtrl.Name, contatosCtrl.Phone, contatosCtrl.Email, contatosCtrl.Address, contatosCtrl.Observacao));
         await Shell.Current.GoToAsync($"//{nameof(ContatosPage)}");
     }
 

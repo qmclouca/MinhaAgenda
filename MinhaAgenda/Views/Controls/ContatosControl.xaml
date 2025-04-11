@@ -52,6 +52,12 @@
                 <Entry x:Name="entryAddress" Placeholder="Endereço" VerticalOptions="Center"></Entry>
             </HorizontalStackLayout>
         </Frame>
+		<Frame Padding="10,2,10,2">
+			<VerticalStackLayout Spacing="5">
+				<Label Text="Observação" VerticalOptions="Start" />
+				<Editor x:Name="entryObservacao" Placeholder="Digite uma observação..." AutoSize="TextChanges" />
+			</VerticalStackLayout>
+		</Frame>
         <Button x:Name="btnSave" Text="Salvar" Clicked="btnSave_Clicked"></Button>
         <Button x:Name="btnCancel" Text="Cancelar" Clicked="btnCancel_Clicked"></Button>
     </VerticalStackLayout>

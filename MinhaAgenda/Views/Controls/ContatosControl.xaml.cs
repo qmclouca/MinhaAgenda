@@ -59,6 +59,20 @@ public partial class ContatosControl : ContentView
         }
     }
 
+
+    public string Observacao
+    {
+        get
+        {
+            return entryObservacao.Text;
+        }
+        
+        set
+        {
+            entryObservacao.Text = value;
+        }
+    }
+
     private void btnSave_Clicked(object sender, EventArgs e)
     {
         if (nameValidator.IsNotValid)
