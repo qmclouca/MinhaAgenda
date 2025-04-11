@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿
+using SQLite;
 using System.ComponentModel.DataAnnotations;
 
 namespace CoreBusiness.Entidades
@@ -7,7 +8,7 @@ namespace CoreBusiness.Entidades
     {
         public Contato()
         {
-            
+
         }
 
         public Contato(string nome, string? fone, string? email, string endereco)
@@ -28,6 +29,16 @@ namespace CoreBusiness.Entidades
             Endereco = endereco;
         }
 
+        public Contato(string nome, string? fone, string? email, string endereco, string observacao)
+        {
+            Id = Guid.NewGuid();
+            Nome = nome;
+            Fone = fone;
+            Email = email;
+            Endereco = endereco;
+            Observacao = observacao;
+        }
+
         [Required]
         [PrimaryKey, AutoIncrement]
         public Guid Id { get; set; }
@@ -37,5 +48,6 @@ namespace CoreBusiness.Entidades
         [Required]
         public string? Email { get; set; } = string.Empty;
         public string? Endereco { get; set; } = string.Empty;
+        public string? Observacao { get; set; } = string.Empty;
     }
 }
