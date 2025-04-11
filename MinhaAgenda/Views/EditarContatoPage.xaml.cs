@@ -34,7 +34,7 @@ public partial class EditarContatoPage : ContentPage
 
     private async void contatoCtrl_OnCancel(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync($"{nameof(ContatosPage)}");
+        await Shell.Current.GoToAsync($"//{nameof(ContatosPage)}");
     }
 
     private void contatoCtrl_OnError(object sender, string e)
@@ -50,7 +50,7 @@ public partial class EditarContatoPage : ContentPage
         contato.Endereco = contatosCtrl.Address;
 
         await _editarContatoUseCase.ExecutaAsync(contato);
-        await Shell.Current.GoToAsync($"{nameof(ContatosPage)}");
+        await Shell.Current.GoToAsync($"//{nameof(ContatosPage)}");
 
     }
 }
