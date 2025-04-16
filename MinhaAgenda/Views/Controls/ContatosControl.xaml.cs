@@ -2,6 +2,7 @@ using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
 using Microsoft.Maui.Devices.Sensors;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 
 namespace MinhaAgenda.Views.Controls;
 
@@ -120,6 +121,31 @@ public partial class ContatosControl : ContentView
         try
         {
             var localizacao = await Geolocation.GetLastKnownLocationAsync();
+            if(localizacao == null)
+            {
+               localizacao = await Geolocation.GetLocationAsync(new GeolocationRequest
+               {
+                   DesiredAccuracy = GeolocationAccuracy.Medium,
+                   Timeout = TimeSpan.FromSeconds(30)
+               });
+            }
+            if(localizacao ==null)
+            {
+                Debug.WriteLine("Localização não encontrada.");
+                return;
+            }
+            var placemarks = await Geocoding.GetPlacemarksAsync(localizacao);
+            var placemark = placemarks?.FirstOrDefault();
+            if (placemark != null)
+            {
+                var enderecoFormatado = $"{placemark.Thoroughfare}, {placemark.Locality}, {placemark.AdminArea}";
+                entryAddress.Text = enderecoFormatado;
+                await MostrarEnderecoNoMapa(enderecoFormatado);
+            }
+            else
+            {
+                Debug.WriteLine("Não foi possível obter o endereço."); 
+            }
         }
         catch (Exception ex)
         {
