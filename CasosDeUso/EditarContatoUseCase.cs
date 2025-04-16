@@ -25,7 +25,8 @@ namespace CasosDeUso
                 Id = contato.Id,
                 Nome = contato.Nome,
                 Email = contato.Email,
-                Fone = contato.Fone
+                Fone = contato.Fone,
+                Endereco = contato.Endereco,
             };
 
             await _contatoRepository.AtualizarContato(novoContato);
