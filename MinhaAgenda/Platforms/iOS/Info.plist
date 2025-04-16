@@ -9,6 +9,14 @@
 		<integer>1</integer>
 		<integer>2</integer>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Precisamos da sua localização para mostrar no mapa.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Usamos a câmera para tirar fotos do seu contato.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Precisamos do microfone para gravar áudio.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Permita o acesso às fotos para salvar suas imagens.</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>arm64</string>
