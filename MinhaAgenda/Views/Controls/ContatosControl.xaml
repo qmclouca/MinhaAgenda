@@ -60,6 +60,10 @@
                   WidthRequest="400"
                   IsShowingUser="false"
                   MapType="Street" />
+        <Button Text="Usar localização atual"
+                Clicked="btnLocalizacaoAtual_Clicked"
+                Margin="0,5,0,0"/>
+
 
     </VerticalStackLayout>
 </ContentView>

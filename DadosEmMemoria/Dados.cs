@@ -11,11 +11,11 @@ namespace MinhaAgenda.Plugins.DadosEmMemoria
         {
             _contatos = new List<Contato>()
             {
-                new Contato("João","111-111-1111", "João@teste.com","endereço 1" ),
-                new Contato("Lucas","222-111-1111", "Lucas@teste.com","endereço 2" ),
-                new Contato("Paulo","333-111-1111", "Paulo@teste.com","endereço 3" ),
-                new Contato("Mateus","4444-111-1111", "Mateus@teste.com","endereço 4" ),
-                new Contato("Leonardo","111-111-1111", "Leonardo@teste.com","endereço 5" ),
+                new Contato("João","111-111-1111", "João@teste.com","avenida expedicionario jose pedro coelho tubarao santa catarina" ),
+                new Contato("Lucas","222-111-1111", "Lucas@teste.com","avenida expedicionario jose pedro coelho tubarao santa catarina" ),
+                new Contato("Paulo","333-111-1111", "Paulo@teste.com","avenida expedicionario jose pedro coelho tubarao santa catarina" ),
+                new Contato("Mateus","4444-111-1111", "Mateus@teste.com","avenida expedicionario jose pedro coelho tubarao santa catarina" ),
+                new Contato("Leonardo","111-111-1111", "Leonardo@teste.com","avenida expedicionario jose pedro coelho tubarao santa catarina" ),
             };
         }
         public Task AdicionarContato(Contato contato)
