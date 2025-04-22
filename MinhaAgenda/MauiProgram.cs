@@ -5,6 +5,7 @@ using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using MinhaAgenda.Plugins.SqlLite;
 using MinhaAgenda.Views;
+using SqlLite;
 
 namespace MinhaAgenda
 {
@@ -34,6 +35,10 @@ namespace MinhaAgenda
             builder.Services.AddSingleton<IApagarContatoUseCase, ApagarContatosUseCase>();
             builder.Services.AddSingleton<IAdicionarContatoUseCase, AdicionarContatoUseCase>();
             builder.Services.AddSingleton<IEditarContatoUseCase, EditarContatoUseCase>();
+            builder.Services.AddSingleton<IRepositorioDeObservacoes, RepositorioObservacoesSqlLite>();
+            builder.Services.AddSingleton<IAdicionarObservacoesUseCase, AdicionarObservacoesUseCase>();
+            //builder.Services.AddSingleton<IContatoSelecionadoService, ContatoSelecionadoService>();
+            builder.Services.AddSingleton<ObservacoesPage>();
             #endregion
             builder.Services.AddSingleton<ContatosPage>();
             builder.Services.AddSingleton<EditarContatoPage>();
